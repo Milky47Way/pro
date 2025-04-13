@@ -43,7 +43,7 @@ df = pd.get_dummies(df, columns=["education_form", "education_status", "occupati
 X = df.drop("result", axis=1)
 y = df["result"]
 # Розділення даних
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_stat=42)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
 # Навчання моделі
 sc = StandardScaler()
 X_train = sc.fit_transform(X_train)
@@ -51,7 +51,7 @@ X_test = sc.transform(X_test)
 classifier = KNeighborsClassifier(n_neighbors=5)
 classifier.fit(X_train, y_train)
 
-y_ped = classifir.predict(X_test)
+y_pred = classifier.predict(X_test)
 print("Відсоток правильно передбачених результатів:",
       accuracy_score(y_test, y_pred) * 100)
 print("Confision matrix:")
